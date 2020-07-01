@@ -79,6 +79,18 @@ export class ReporteEmpleadosComponent implements OnInit {
   }
 
   empleadosPDF() {
+
+    var img = new Image();
+    img.src = "../../../assets/img/favicon.png  ";
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    var data =dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+
     let reporteFinalEmp = [];
     this.reporteEmp.forEach((emp: any) => {
       var empTemp = [];
@@ -89,17 +101,19 @@ export class ReporteEmpleadosComponent implements OnInit {
       empTemp.push(emp.celular);
       empTemp.push(emp.direccion);
       let cargoEmp: any;
-      if(emp.perfil == '7p5Gu8QQLPVvnJIZ7dCC'){
+      if (emp.perfil == '7p5Gu8QQLPVvnJIZ7dCC') {
         cargoEmp = 'Administrador';
-      }else if(emp.perfil == 'O84lNoQAdvst0LNzOZM8'){
+      } else if (emp.perfil == 'O84lNoQAdvst0LNzOZM8') {
         cargoEmp = 'Mesero';
       }
       empTemp.push(cargoEmp)
       reporteFinalEmp.push(empTemp);
     });
     const pdfEmpleados = new jspdf("portrait", "px", "a4") as jsPDFWithPlugin;
-    pdfEmpleados.text("Reporte de empleados - Roti Frille", 10, 20);
+    pdfEmpleados.addImage(data, 'PNG', 10, 10, 30, 30)  
+    pdfEmpleados.text("Reporte de empleados - Roti Grillé", 50, 30);
     pdfEmpleados.autoTable({
+      margin: {top: 60},
       head: [['Cedula', 'Nombre', 'Apellido', 'Email', 'Contacto', 'Dirección', 'Cargo']],
       body: reporteFinalEmp,
     });

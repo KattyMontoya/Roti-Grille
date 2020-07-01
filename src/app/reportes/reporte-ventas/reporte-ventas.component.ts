@@ -158,6 +158,18 @@ export class ReporteVentasComponent implements OnInit {
 
 
   ventasPDF() {
+
+    var img = new Image();
+    img.src = "../../../assets/img/favicon.png  ";
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    var data =dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+
     let reporteFinal = [];
     this.reporteVentas.forEach((e: any) => {
       var objTemp = [];
@@ -183,8 +195,10 @@ export class ReporteVentasComponent implements OnInit {
       reporteFinal.push(objTemp);
     });
     const pdfVentas = new jspdf("portrait","px","a4") as jsPDFWithPlugin;
-    pdfVentas.text("Reporte de ventas - Roti Grille", 10, 20);
+    pdfVentas.addImage(data, 'PNG', 10, 10, 30, 30)  
+    pdfVentas.text("Reporte de ventas - Roti Grillé", 50, 30);
     pdfVentas.autoTable({
+      margin: {top: 60},
       head: [['# Mesa', '# Pedido', 'Fecha', 'Estado', 'Total']],
       body: reporteFinal,
     });
