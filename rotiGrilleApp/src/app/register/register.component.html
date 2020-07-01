@@ -1,0 +1,41 @@
+<div class="contenedor">
+  <div class="row">
+    <div class="text-center" style="width: 100%;margin: 20px; color: #ffffff;">
+    </div>
+    <div class="" style="width: 500px; margin: auto">
+
+      <div class="card">
+        <!-- When Uses is Not Logged In -->
+        <div class="card-body" *ngIf="!userDetails">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <div class="btn-group">
+                <h3><strong>Registrarse</strong></h3>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="emailInput" id="email" placeholder="Email" required>
+          </div>
+          <div class="form-group" *ngIf="!isForgotPassword">
+            <label for="password">Contraseña</label>
+            <input type="password" class="form-control" [(ngModel)]="passwordInput" id="password"
+              placeholder="Password" minlength="6" required>
+          </div>
+          <div class="boton" *ngIf="!isForgotPassword">
+            <button type="button" class="btn btn-primary" (click)="registerUser()">Registrarse</button>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <a routerLink="/login">¿Ya tienes una cuenta?</a>
+          </div>
+        </div>
+      <div class="alert alert-{{responseMessageType}}" role="alert" *ngIf="responseMessage.length">
+        {{responseMessage}}
+      </div>
+    </div>
+  </div>
+</div>

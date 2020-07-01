@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "roti-grille-restaurante",
+    "public": "dist/rotiGrilleApp",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+<div class="detalle">
+    <!-- <span  *ngFor="let pedido of dataPerfiles"> -->
+    <div mat-dialog-title class="cuerpo-detalle">
+        <!-- <h4 *ngIf=" pedidoNuevo.uid_mesa == 'ee7bc94a-4bbb-6fdb-3557-700831252518'" >Mesa Nº 1</h4> -->
+        <span *ngIf="pedidoNuevo.uid_mesa == 'ee7bc94a-4bbb-6fdb-3557-700831252518'">
+            <h4>Mesa Nº 1</h4>
+        </span>
+        <span *ngIf="pedidoNuevo.uid_mesa == '0188b2b6-63f4-a68c-3352-231110437105'">
+            <h4>Mesa Nº 2</h4>
+        </span>
+        <span *ngIf="pedidoNuevo.uid_mesa == '4d9b48fc-fbde-bd04-3548-851020949988'">
+            <h4>Mesa Nº 3</h4>
+        </span>
+        <span *ngIf="pedidoNuevo.uid_mesa == ''">
+            <h4>Mesa Nº 4</h4>
+        </span>
+        <h4>- Pedido {{pedidoNuevo.pedido}}</h4>
+    </div>
+    <mat-dialog-content class="mat-typography">
+        <label style="font-size: 13px;"> <span style="font-weight: bold;"> Pedido realizado el:
+            </span>{{pedidoNuevo.fecha | date: "dd/MM/yyyy, HH: mm"}}</label>
+        <br>
+        <label style="font-weight: bold;">DETALLE:</label>
+        <div *ngFor="let pedido of pedidoNuevo.productos">
+            <p>{{pedido.cantidad}} {{pedido.nombre}}</p>
+            <!-- <p>{{pedido.value.ingredientes}}</p> -->
+            <!-- <br> -->
+            <!-- <h6>Ingredientes:</h6>
+        <ul>
+            <li *ngFor="let ingrediente of pedido.ingredientes | keyvalue">
+                {{ingrediente.value.ingredientes}}
+            </li>
+        </ul> -->
+            <p *ngIf="pedido.deseo_bebida.length != 0" class="pedidoObervacion">
+                <span style="font-weight: bold;">Sabor:</span>
+                <span *ngFor="let bebida of pedido.deseo_bebida | keyvalue">
+                    {{bebida.value.ingrediente}}
+                </span>
+            </p>
+            <p *ngIf="pedido.categoria == 'e9skaVDYzcyCtz1tr7GN' && pedido.temperatura != ''" class="pedidoObervacion">
+                <span style="font-weight: bold;">Temperatura:</span>
+                {{pedido.temperatura}}
+            </p>
+            <!-- <br> -->
+            <ul *ngIf="pedido.no_deseo.length != 0" class="pedidoObervacion">
+                <span style="font-weight: bold;">No desea:</span>
+                <li *ngFor="let deseo of pedido.no_deseo | keyvalue">
+                    {{deseo.value.ingrediente}}
+                </li>
+            </ul>
+            <p *ngIf="pedido.observacion != ''" class="pedidoObervacion">
+                <span style="font-weight: bold;">Observacion:</span>
+                {{pedido.observacion}}
+            </p>
+
+        </div>
+        <h5 style="color: green;">Total: ${{pedidoNuevo.total}} <span style="font-size: 10px;">Incluye IVA</span> </h5>
+        <div *ngIf="pedidoNuevo.factura == true" style="font-size: 14px;">
+            <span style="font-weight: bold;">Datos de la factura:</span>
+            <p style="margin-bottom: 0;"><span style="font-weight: bold;">Nombre: </span>{{nombre}} {{apellido}}</p>
+            <p style="margin-bottom: 0;"><span style="font-weight: bold;">Cedula: </span>{{cedula}}</p>
+            <p style="margin-bottom: 0;"><span style="font-weight: bold;">Direccion: </span>{{direccion}}</p>
+        </div>
+    </mat-dialog-content>
+    <!-- <div class="receta" [(ngModel)]="pedido.total">
+        <label for="">{{pedido.total}}</label>
+        </div> -->
+    <!-- </span> -->
+    <div mat-dialog-actions>
+        <button mat-raised-button color="accent" *ngIf="pedidoNuevo.tipo == 'pendiente'"
+            (click)="accionRechazar(pedidoNuevo)">Rechazar</button>
+        <button mat-raised-button color="primary" *ngIf="pedidoNuevo.tipo == 'pendiente'"
+            (click)="accionAceptar(pedidoNuevo)">Aceptar</button>
+        <button mat-raised-button *ngIf="pedidoNuevo.tipo == 'produccion' || pedidoNuevo.tipo == 'finalizado'"
+            (click)="cerrarOrden()">Cerrar</button>
+        <button mat-raised-button color="primary" *ngIf="pedidoNuevo.tipo == 'produccion'"
+            (click)="finalizarOrden()">Finalizar</button>
+    </div>
+</div>

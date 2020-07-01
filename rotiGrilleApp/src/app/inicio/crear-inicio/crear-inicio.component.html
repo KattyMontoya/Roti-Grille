@@ -1,0 +1,52 @@
+<form [formGroup]="form" (ngSubmit)="accionCrear()" class="contenedor">
+    <h3 class="titulo">Creación de Página de inicio</h3>
+    <div [hidden]="true">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="id" formControlName="id">
+        </mat-form-field>
+    </div>
+    <div class="info">
+        <div class="info-general">
+            <h6>Información General</h6>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Nombre" formControlName="nombre" required>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="example-full-width">
+                <input matInput placeholder="Precio" formControlName="precio" type="number" required>
+                <span matPrefix>$&nbsp;</span>
+            </mat-form-field> -->
+
+            <mat-form-field>
+                <mat-select placeholder="Plataforma" formControlName="plataforma" required>
+                    <mat-option value="option" disabled>--Seleccione--</mat-option>
+                    <!-- <mat-option *ngFor="let perfil of dataPerfiles" [value]='perfil.id'>
+                        {{ perfil.nombre | uppercase }}</mat-option> -->
+                    <mat-option value="Móvil">Móvil</mat-option>
+                    <mat-option value="Web">Web</mat-option>
+                    <!-- <mat-option value="Administrador">Administrador</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary" onclick="document.getElementById('inFotoPlato').click();"
+                type="button">
+                <mat-icon>insert_photo</mat-icon>
+                <span>Subir Imagen</span>
+            </button>
+            <input type="file" accept=".png , .jpg" style="display: none;" id="inFotoPlato" (change)="seleccionar($event)">
+            <p>{{labelFile}}</p>
+            
+        </div>
+    </div>
+    <div class="botones">
+        <button mat-raised-button color="primary" type="submit" [disabled] ="form.invalid">
+            <mat-icon>done</mat-icon>
+            <span>Crear</span>
+        </button>
+        <button mat-raised-button color="accent" (click)='cerrar()' routerLink="/inicio-movil" type="button">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+    </div>
+</form>
+

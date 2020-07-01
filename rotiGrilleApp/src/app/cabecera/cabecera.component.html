@@ -1,0 +1,81 @@
+<header class="site-header inicio fixed-top">
+    <div class="contenedor contenido-header">
+        <div class="barra">
+            <div>
+                <!-- <img src="../../assets/img/imagenlogo.png" alt="Logotipo de RotiGrille" class="imagenlogo"> -->
+                <img src="../../assets/img/barra.png" alt="Logotipo de RotiGrille" class="imagenlogo">
+            </div>
+
+            <nav id="navegacion" class="navegacion" *ngIf= "this.loginService.estaLogeado() != true ; else isfalse" >
+
+                <button routerLink="/inicio" style="cursor: pointer">
+                    <mat-icon>home</mat-icon>
+                    <span>Inicio</span>
+                </button>
+                <button routerLink="/login" style="cursor: pointer">
+                    <mat-icon>how_to_reg</mat-icon>
+                    <span>Iniciar Sesión</span>
+                </button>
+                <!-- <button routerLink="/registro" style="cursor: pointer">
+                    <mat-icon>person_add</mat-icon>
+                    <span>Registrarse</span>
+                </button> -->
+                <!-- <button routerLink="/contacto" style="cursor: pointer">
+                    <mat-icon>contact_support</mat-icon>
+                    <span>Contacto</span>
+                </button>                 -->
+                <!-- <button style="cursor: pointer" (click)="loginService.cerrarSesion()">
+                    <mat-icon>reply</mat-icon>
+                    <span>Cerrar Sesion</span>
+                </button> -->
+                <!-- </div> -->
+
+                <!-- <a routerLink="/inicio">Inicio</a>
+                <a routerLink="/login"> Iniciar Sesion</a>
+                <a routerLink="/registro">Registrarse</a>
+                <a routerLink="/contacto">Contacto</a> -->
+            </nav>
+
+            <ng-template #isfalse >
+                <!-- <nav id="navegacion" class="navegacion" *ngIf= "this.loginService.emailLogeado() == true  ; else isfalse">
+                    <button style="cursor: pointer" (click)="modificarEmp()">
+                        <mat-icon>person_add</mat-icon>
+                        <span>Perfil</span>
+                    </button>
+                    <button style="cursor: pointer" (click)="loginService.cerrarSesion()">
+                        <mat-icon>reply</mat-icon>
+                        <span>Cerrar Sesión</span>
+                    </button>
+                    
+                </nav> -->
+                <!-- <ng-template #isfalse > -->
+                    <nav id="navegacion" class="navegacion">
+                        <button style="cursor: pointer" (click)="loginService.cerrarSesion()">
+                        <!-- <button style="cursor: pointer" (click)="cerrarSesion()"> -->
+                            <mat-icon>reply</mat-icon>
+                            <span>Cerrar Sesión</span>
+                        </button>
+                        
+                    </nav>
+                <!-- </ng-template> -->
+                <!-- <button routerLink="/inicio" style="cursor: pointer">
+                    <mat-icon>home</mat-icon>
+                    <span>Inicio</span>
+                </button> -->
+                <!-- <button routerLink="/login" style="cursor: pointer">
+                    <mat-icon>how_to_reg</mat-icon>
+                    <span>Iniciar Sesion</span>
+                </button>
+                <button routerLink="/registro" style="cursor: pointer">
+                    <mat-icon>person_add</mat-icon>
+                    <span>Registrarse</span>
+                </button> -->
+                <!-- <button routerLink="/contacto" style="cursor: pointer">
+                    <mat-icon>contact_support</mat-icon>
+                    <span>Contacto</span>
+                </button>                 -->
+                
+            </ng-template>
+        </div>
+    </div> <!-- contenedor -->
+</header>

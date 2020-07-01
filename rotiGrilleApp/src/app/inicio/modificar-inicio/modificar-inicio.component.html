@@ -1,0 +1,40 @@
+<div class="contenedor">
+    <h3 class="titulo">Modificación de Página de inicio</h3>
+    <div [hidden]="true">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="id" [(ngModel)]="inicio.id">
+        </mat-form-field>
+    </div>
+    <div class="info">
+        <div class="info-general">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Nombre " [(ngModel)]="inicio.nombre">
+            </mat-form-field>
+
+            <!-- <mat-form-field class="example-full-width">
+                <input matInput placeholder="Precio" type="number" [(ngModel)]="promocion.precio">
+                <span matPrefix>$&nbsp;</span>
+            </mat-form-field> -->
+
+            <img mat-card-image src="{{inicio.imagen}}" *ngIf="urlImagen" class="imgPlato">
+            <button mat-stroked-button color="primary" onclick="document.getElementById('inFotoPubli').click();" type="button">
+                <mat-icon>insert_photo</mat-icon>
+                <span>Subir Imagen</span>
+            </button>
+            <input type="file" accept=".png , .jpg"  style="display: none;" id="inFotoPubli" (change)="seleccionar($event)">
+            <p>{{labelFile}}</p>
+        </div>
+        
+    </div>
+    <div class="botones">
+        <button mat-raised-button color="primary" (click)="accionModificar()">
+            <mat-icon>done</mat-icon>
+            <span>Guardar</span>
+        </button>
+        <button mat-raised-button color="accent" (click)='cerrar()' type="button">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+    </div>
+
+

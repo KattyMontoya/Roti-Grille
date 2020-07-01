@@ -1,0 +1,14 @@
+<div class="contenedor">
+    <h3 class="titulo">{{publicidad.nombre}}</h3>
+    
+    <div class="receta">
+        <label for="">{{publicidad.detalle}}</label>
+        <img class="imgPublicidad" src="{{publicidad.imagen}}" alt="imagenPublicidad">
+    </div>
+    <div class="boton">
+        <button mat-raised-button color="primary" (click)="cerrar()">
+            <mat-icon>done</mat-icon>
+            <span>Cerrar</span>
+        </button>
+    </div>
+</div>

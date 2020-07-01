@@ -1,0 +1,66 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /** Reset para REMS - 62.5% = 10px de 16px **/
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6rem;
+    line-height: 2;
+}
+
+/** Globales **/
+.contenedor {
+    width: 95%;
+    max-width: 70rem; /** = 1200px; **/
+    margin: 0 auto;
+}
+
+/** Utilidades **/
+.seccion {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.navegacion a {
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin-right: 2rem;
+}
+.navegacion a:last-of-type {
+    margin: 0;
+}
+.navegacion a:hover {
+    color: #71B100;
+}
+/** Footer **/
+.site-footer {
+    background-color:#1a1a1a;
+    margin: 0;
+}
+.contenedor-footer {
+    padding: 0.2rem 0;
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .contenedor-footer {
+        display: inline;
+        align-items: right;
+    }
+}
+.site-footer nav {
+    display: none;
+}
+@media (min-width: 768px) {
+    .site-footer nav {
+        display: block;
+    }
+}
+
+.copyright {
+    margin: 0;
+    color: #ffffff;
+}

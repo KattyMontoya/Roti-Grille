@@ -1,0 +1,174 @@
+<div class="contenedor">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="/homeAdmin">
+                    Menú Principal
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a routerLink="/reportes">Reportes</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Ventas
+            </li>
+        </ol>
+    </nav>
+    <h2 class="titulo">Reporte de ventas</h2>
+    <div class="botones">
+        <button style="margin-right: 20px;" mat-raised-button color="primary" (click)="limpiar()">
+            Limpiar
+        </button>
+
+        <div>
+            <div class="card-filtrar">
+                <mat-form-field class="filtrar">
+                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerDesde" placeholder="Desde:"
+                        [(ngModel)]="fechaDesde" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="pickerDesde" style="color: black;"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerDesde disabled="false"></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="filtrar">
+                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerHasta" placeholder="Hasta:"
+                        [(ngModel)]="fechaHasta" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="pickerHasta" style="color: black;"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerHasta disabled="false"></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <button style="margin-left: 20px;" mat-raised-button color="primary" (click)="buscar()">
+            <mat-icon>search</mat-icon>Buscar
+        </button>
+
+        <button mat-raised-button color="primary" (click)="ventasPDF();">
+            <mat-icon>printer</mat-icon>Exportar
+        </button>
+
+        <!-- <button mat-raised-button color="primary" (click)="ventasPDF();">
+            <mat-icon>printer</mat-icon>Exportar filtrado
+        </button> -->
+
+    </div>
+
+    <div id="tblVentas">
+
+        <mat-table id="tblVentas" class="grdVentas" [dataSource]="dataSource" matSort>
+            <!--*-->
+            <!-- <ng-container matColumnDef="tipo">
+            <mat-cell *matCellDef="let row"> 
+                <span ngIf="row.tipo == 'finalizado'"></span>
+            </mat-cell>
+        </ng-container> -->
+            <ng-container matColumnDef="uid_mesa">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Nº Mesa </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <span *ngIf="row.uid_mesa == 'ee7bc94a-4bbb-6fdb-3557-700831252518'">
+                        Mesa Nº 1
+                    </span>
+                    <span *ngIf="row.uid_mesa == '0188b2b6-63f4-a68c-3352-231110437105'">
+                        Mesa Nº 2
+                    </span>
+                    <span *ngIf="row.uid_mesa == '4d9b48fc-fbde-bd04-3548-851020949988'">
+                        Mesa Nº 3
+                    </span>
+                    <span *ngIf="row.uid_mesa == ''">
+                        Mesa Nº 4
+                    </span>
+                </mat-cell>
+
+                <!-- <mat-footer-cell *matFooterCellDef> Total de ventas aceptadas: </mat-footer-cell>
+                <mat-footer-cell *matFooterCellDef> Total de ventas rechazadas: </mat-footer-cell> -->
+            </ng-container>
+
+            <ng-container matColumnDef="pedido">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Nº Pedido </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.pedido}} </mat-cell>
+                <!-- <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                <mat-footer-cell *matFooterCellDef> </mat-footer-cell> -->
+            </ng-container>
+
+            <ng-container matColumnDef="tipo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.tipo}} </mat-cell>
+                <!-- <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                <mat-footer-cell *matFooterCellDef> </mat-footer-cell> -->
+            </ng-container>
+
+            <ng-container matColumnDef="fecha">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha y Hora </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.fecha | date: "dd/MM/yyyy, HH:mm"}} </mat-cell>
+                <!-- <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                <mat-footer-cell *matFooterCellDef> </mat-footer-cell> -->
+            </ng-container>
+
+            <ng-container matColumnDef="estadoPedido">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.estadoPedido}} </mat-cell>
+                <!-- <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                <mat-footer-cell *matFooterCellDef> </mat-footer-cell> -->
+            </ng-container>
+
+            <!-- Precio Column -->
+            <ng-container matColumnDef="total">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Total </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.total | currency}} </mat-cell>
+                <!-- <mat-footer-cell *matFooterCellDef> {{totalVentasAceptadas | currency}} </mat-footer-cell> -->
+                <!-- <mat-footer-cell *matFooterCellDef> {{totalVentasRechazadas | currency}} </mat-footer-cell> -->
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="accent" (click)="verPedido(row)">
+                        <mat-icon aria-label="Ver">visibility</mat-icon>
+                    </button>
+                </mat-cell>
+                <!-- <mat-footer-cell *matFooterCellDef> </mat-footer-cell> -->
+                <!-- <mat-footer-cell *matFooterCellDef> </mat-footer-cell> -->
+            </ng-container>
+
+            <!-- empty footer row-->
+            <ng-container matColumnDef="emptyFooter">
+                <mat-footer-cell *matFooterCellDef class="mobile-hide"></mat-footer-cell>
+            </ng-container>
+
+            <!-- set footer for vat amount-->
+            <ng-container matColumnDef="totalRechazados">
+                <mat-footer-cell *matFooterCellDef class="mobile-hide">Total de ventas rechazadas:</mat-footer-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="vatAmount">
+                <mat-footer-cell *matFooterCellDef>
+                    <!-- <span class="mobile-label">BTW (21%)</span> -->
+                    <span class="mobile-value"> {{totalVentasRechazadas | currency}} </span>
+                </mat-footer-cell>
+            </ng-container>
+
+            <!-- set footer for total amount-->
+            <ng-container matColumnDef="totalAceptados">
+                <mat-footer-cell *matFooterCellDef class="mobile-hide bold">Total de ventas aceptados:</mat-footer-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="totalAmount">
+                <mat-footer-cell *matFooterCellDef>
+                    <!-- <span class="mobile-label bold">Totaalbedrag</span> -->
+                    <span class="mobile-value bold">  {{totalVentasAceptadas | currency}}</span>
+                </mat-footer-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-footer-row *matFooterRowDef="displayedAceptadosColumns"></mat-footer-row>
+            <mat-footer-row *matFooterRowDef="displayedRechazadosColumns"></mat-footer-row>
+        </mat-table>
+    </div>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    <!-- <div class="botones"> -->
+    <!-- <button mat-raised-button color="primary" (click)="exportAsXLSX();"> -->
+    <!-- <button mat-raised-button color="primary" (click)="ventasPDF();">
+            <mat-icon>printer</mat-icon>Exportar
+        </button>
+    </div> -->
+</div>

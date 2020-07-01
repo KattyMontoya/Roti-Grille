@@ -1,0 +1,26 @@
+<div class="contenedor">
+    <h3 class="titulo">{{plato.nombre}}</h3>
+
+    <div class="receta">
+        <div>
+            <h5>Categoría:</h5>
+            <div *ngFor="let nombre of categorias | keyvalue">
+                <p>{{nombre.value.nombre}}</p>
+            </div>
+            <h5>Ingredientes:</h5>
+            <ul>
+                <li *ngFor="let ingrediente of ing | keyvalue">
+                    {{ingrediente.value.ingrediente}}
+                </li>
+            </ul>
+        </div>
+        <!-- <label for="">{{plato.detalle}}</label> -->
+        <img class="imgPlato" src="{{plato.imagen}}" alt="imagenPlato">
+    </div>
+    <div class="boton">
+        <button mat-raised-button color="primary" (click)="cerrar()">
+            <mat-icon>done</mat-icon>
+            <span>Cerrar</span>
+        </button>
+    </div>
+</div>

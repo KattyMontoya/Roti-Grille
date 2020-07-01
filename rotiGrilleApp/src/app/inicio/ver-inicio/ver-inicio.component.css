@@ -1,0 +1,22 @@
+.receta{
+    display: flex;
+    justify-content: center;
+    /* width: 550px; */
+}
+label{
+    padding-right: 10px;
+}
+.imgInicio{
+    /* width: 200px; */
+    width: 50%;
+    height: 50%;
+    /* margin-left: 10px; */
+}
+.boton{
+    padding-top: 10px;
+}
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

@@ -1,0 +1,80 @@
+<form [formGroup]="form" (ngSubmit)="accionCrearEmp()" class="contenedor">
+    <!------------------------------------------------------------------------------------------------------>
+    <!--------------------------------------FORMULARIO DE CREACION------------------------------------------>
+    <!------------------------------------------------------------------------------------------------------>
+    <h3 class="titulo">Creación de Mesero</h3>
+    <div [hidden]="true">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="id" formControlName="id">
+        </mat-form-field>
+    </div>
+    <div class="info">
+        <div class="info-general">
+            <h6>Información General</h6>
+            <mat-form-field class="example-full-width">
+                <input matInput (keydown)="soloLetras($event)" type="text" placeholder="Apellido"
+                    formControlName="apellido" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput (keydown)="soloLetras($event)" type="text" placeholder="Nombre" formControlName="nombre"
+                    required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput (keydown)="soloNumeros($event)" placeholder="Cedula de Identidad"
+                    formControlName="cedula" minlength="10" maxlength="10" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Correo Electrónico" formControlName="email" type="email"
+                    [class.is-invalid]="form.get('email').invalid && form.get('email').touched" required>
+            </mat-form-field>
+            <div *ngIf="(primEmail.invalid && primEmail.touched) || primEmail.dirty">
+                <small *ngIf="primEmail.errors?.required" class="text-danger">Campo obligatorio</small>
+                <!--question mark(?) is a safe navigation operator-->
+                <small *ngIf="primEmail.errors?.pattern" class="text-danger">Por favor ingrese un correo
+                    válido</small>
+            </div>
+        </div>
+        <div class="info-general2">
+            <mat-form-field class="example-full-width">
+                <input matInput (keydown)="soloNumeros($event)" placeholder="Teléfono / Celular"
+                    formControlName="celular" minlength="9" maxlength="10" required>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Dirección" formControlName="direccion" required>
+            </mat-form-field>
+
+            <button mat-stroked-button color="primary" onclick="document.getElementById('inFotoEmp').click();"
+                type="button">
+                <mat-icon>insert_photo</mat-icon>
+                <span>Subir Imagen</span>
+            </button>
+            <input type="file" accept=".png , .jpg"  style="display: none;" id="inFotoEmp"
+                (change)="seleccionar($event)">
+            <p>{{labelFile}}</p>
+
+            <mat-form-field>
+                <mat-select placeholder="Cargo" formControlName="perfil" required>
+                    <mat-option value="option" disabled>--Seleccione--</mat-option>
+                    <!-- <mat-option *ngFor="let perfil of dataPerfiles" [value]='perfil.id'>
+                        {{ perfil.nombre | uppercase }}</mat-option> -->
+                    <mat-option value="Empleado">Mesero</mat-option>
+                    <!-- <mat-option value="Administrador">Administrador</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------->
+    <!--------------------------------------BOTONES DE ACCION-------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------->
+    <div class="botones">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+            <mat-icon>done</mat-icon>
+            <span>Crear</span>
+        </button>
+        <button mat-raised-button color="warn" (click)='cerrar()' routerLink="/empleados" type="button">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,135 @@
+.contenedor{
+    margin-top: 53px;
+}
+/**menu despegable**/
+.menu-desplegable{
+    position: relative;
+    display: inline-block;
+}
+.boton-desplegable{
+    background-color: #e9ecef;
+    color: #007bff;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+}
+.contenido-desplegable{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.contenido-desplegable a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;   
+}
+.contenido-desplegable a:hover{
+    background-color: #ddd;
+}
+.menu-desplegable:hover .contenido-desplegable{
+    display: block;
+}
+.boton-desplegable:hover{
+    background-color: #e9ecef;
+}
+/**Titulo**/
+.titulo{
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 30px 0;
+    padding-top: 10px;
+}
+/**Historial**/
+.historial{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.historial button{
+    margin-bottom: 15px;
+    margin-right: 25px;
+}
+/**Ordenes**/
+.estapas-pedido{
+    display: flex;
+    justify-content: space-around;
+}
+.entrantes{
+    background-color: #ff39398a;
+}
+.produccion{
+    background-color: #1082df8f;
+}
+.finalizados{
+    background-color: #525300;
+}
+legend{
+    font-size: 25px;
+    color: #eeeeee;
+}
+fieldset{
+    width: 100%;
+    height: 100%;
+    margin: 0 20px 35px 20px;
+    padding: 10px;
+}
+.orden{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.total{
+    color: green;
+    padding-top: 30px;
+    margin-top: 3px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.estado{
+    color: red;
+    padding-top: 30px;
+    margin-top: 3px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.cabecera-acordeon{
+    display: flex;
+    justify-content: center;
+    padding-right: 2px;
+    padding-left: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+mat-panel-title{
+    display: flex;
+    justify-items: center;
+}
+mat-panel-title p{
+    size: 13px;
+}
+mat-expansion-panel-header{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.num-pedido p{ 
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+.num-pedido h5{ 
+    padding-top: 30px;
+}
+
+.detalle-pedido {
+    padding-top: 25px;
+}
+

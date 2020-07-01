@@ -1,0 +1,84 @@
+<div class="contenedor">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <!-- <li class="nav-item dropdown breadcrumb-item menu-desplegable">
+                <a class="dropdown-toggle boton-desplegable" *ngIf  routerLink="/homeAdmin" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menú Principal
+                </a>
+                <div class="dropdown-menu contenido-desplegable" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/empleados">Empleados</a>
+                    <a class="dropdown-item" routerLink="/reportes">Reportes</a>
+                    <a class="dropdown-item" routerLink="/menu">Opciones de Menu</a>
+                    <a class="dropdown-item" routerLink="/opiniones">Opiniones</a>
+                    <a class="dropdown-item" routerLink="/ordenes">Ordenes</a>
+                    <a class="dropdown-item" routerLink="/promociones">Promociones</a>
+                    <a class="dropdown-item" routerLink="/paginfo">Pagina Informativa</a>
+                </div>
+            </li> -->
+            <li class="breadcrumb-item">
+                <a routerLink="/homeAdmin">
+                    Menú Principal
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Publicidad
+            </li>
+        </ol>
+    </nav>
+    <h2 class="titulo">Gestión de Publicidad</h2>
+    <div class="botones">
+        <button mat-raised-button color="primary" (click)="creaPublicidad()">
+            <mat-icon>add</mat-icon>Crear
+        </button>
+        <div>
+            <input  type="text" (keyup)="applyFilter($event)" placeholder="Buscar..."
+            class="form-control">
+        </div>
+    </div>
+  </div>
+  <mat-table class="grdPlatos" [dataSource]="dataSource" matSort>
+  
+    <!-- <ng-container matColumnDef="codigo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </mat-header-cell>>
+        <mat-cell *matCellDef="let row"> {{row.codigo}} </mat-cell>>
+    </ng-container> -->
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>>
+        <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>>
+    </ng-container>
+  
+    <ng-container matColumnDef="detalle">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Detalle: </mat-header-cell>>
+      <mat-cell *matCellDef="let row"> {{row.detalle}} </mat-cell>>
+    </ng-container>
+  
+    <!-- Precio Column -->
+    <!-- <ng-container matColumnDef="precio">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>>
+        <mat-cell *matCellDef="let row"> {{row.precio}} </mat-cell>>
+    </ng-container>
+   -->
+   
+  
+    <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>>
+        <mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" (click)="modificar(row)">
+                <mat-icon aria-label="Actualizar">assignment</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="verPublicidad(row)">
+                <mat-icon aria-label="Ver">visibility</mat-icon>
+            </button>
+              <button mat-icon-button color="warn" (click)="eliminarPublicidad(row)">
+                <mat-icon aria-label="Eliminar">highlight_off</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>>
+  </mat-table>
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

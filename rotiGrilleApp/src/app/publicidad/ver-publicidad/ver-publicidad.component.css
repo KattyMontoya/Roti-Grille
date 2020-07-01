@@ -1,0 +1,14 @@
+.receta{
+    display: flex;
+    justify-content: space-between;
+}
+label{
+    padding-right: 10px;
+    border-right: thin solid #000000;
+}
+.imgPublicidad{
+    /* width: 200px; */
+    width: 270px;
+    height: 200px;
+    margin-left: 10px;
+}

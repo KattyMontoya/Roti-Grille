@@ -1,0 +1,38 @@
+<div class="detalle">
+    <div class="cuerpo-detalle">
+        <h3>Detalle del Pedido {{pedido.pedido}}</h3>
+    </div>
+    <label style="font-size: 13px;"> <span style="font-weight: bold;"> Pedido realizado el:
+        </span>{{pedido.fecha | date: "dd/MM/yyyy, HH: mm"}}</label>
+    <br>
+    <label style="font-weight: bold;">DETALLE:</label>
+    <div *ngFor="let pedido of pedido.productos">
+        <p>{{pedido.cantidad}} {{pedido.nombre}}</p>
+        <p *ngIf="pedido.deseo_bebida.length != 0" class="pedidoObervacion">
+            <span style="font-weight: bold;">Sabor:</span>
+            <span *ngFor="let bebida of pedido.deseo_bebida | keyvalue">
+                {{bebida.value.ingrediente}}
+            </span>
+        </p>
+        <p *ngIf="pedido.no_deseo.length != 0" class="pedidoObervacion">
+            <span style="font-weight: bold;">No desea:</span>
+            <span *ngFor="let deseo of pedido.no_deseo | keyvalue">
+                {{deseo.value.ingrediente}}
+            </span>
+        </p>
+        <p *ngIf="pedido.observacion != ''" class="pedidoObervacion">
+            <span style="font-weight: bold;">Observacion:</span>
+            {{pedido.observacion}}
+        </p>
+
+    </div>
+    <h5 style="color: green;">Total: ${{pedido.total}}</h5>
+    <div mat-dialog-actions>
+        <button mat-raised-button (click)="cerrarOrden()">Cerrar</button>
+    </div>
+</div>
+
+<!-- 
+HM Cloud plataforma via Web que permite ver los OEPE de Quito
+integrar PDA a este sistema.
+lunes a las 10 va a estar en equindeca en el local de PDA,  -->

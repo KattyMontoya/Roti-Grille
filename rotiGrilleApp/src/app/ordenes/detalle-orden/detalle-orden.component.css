@@ -1,0 +1,14 @@
+.cuerpo-detalle{
+    display: flex;
+    padding-right: 50px;
+    justify-content: center;
+}
+.detalle{
+    width: 350px;
+}
+
+.pedidoObervacion{
+    font-size: small;
+    padding-left: 20px;
+    margin-top: -20px;
+}

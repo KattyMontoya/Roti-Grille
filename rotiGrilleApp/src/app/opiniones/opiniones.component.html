@@ -1,0 +1,122 @@
+<div class="contenedor">
+    <!--------------------------------------------------------------------------------------------------->
+    <!--------------------------------------BARRA DE NAVEGACION------------------------------------------>
+    <!--------------------------------------------------------------------------------------------------->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <!-- <li class="nav-item dropdown breadcrumb-item menu-desplegable">
+                <a class="dropdown-toggle boton-desplegable" routerLink="/homeAdmin" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menú Principal
+                </a>
+                BARRA DE NAVEGACION
+                <div class="dropdown-menu contenido-desplegable" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/empleados">Empleados</a>
+                    <a class="dropdown-item" routerLink="/reportes">Reportes</a>
+                    <a class="dropdown-item" routerLink="/menu">Opciones de Menu</a>
+                    <a class="dropdown-item" routerLink="/opiniones">Opiniones</a>
+                    <a class="dropdown-item" routerLink="/ordenes">Ordenes</a>
+                    <a class="dropdown-item" routerLink="/promociones">Promociones</a>
+                    <a class="dropdown-item" routerLink="/paginfo">Pagina Informativa</a>
+                </div>
+            </li> -->
+            <li class="breadcrumb-item">
+                <div  *ngIf= "this.loginService.emailLogeado() == true ; else isfalse">
+                    <a routerLink="/homeAdmin">
+                      Menú Principal
+                    </a>
+                </div>
+                  <ng-template #isfalse>
+                    <a routerLink="/homeEmpleado">
+                      Menú Principal
+                    </a>
+                  </ng-template>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Opiniones
+            </li>
+        </ol>
+    </nav>
+    <!--------------------------------------------------------------------------------------------------->
+    <!--------------------------------------FILTRAR Y CREAR---------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------->
+    <h2 class="titulo">Quejas - Sugerencias</h2>
+    <div class="botones">
+        <div>
+            <div class="card-filtrar" style="margin-right: 5px;">
+                <mat-form-field>
+                    <div class="filtrar">
+                        <label for="ddlTipo">Tipo:</label>
+                        <mat-select id="ddlTipo" (selectionChange)="applyFilterTipo($event.value)"
+                            [(value)]="selected">
+                            <mat-option value="todos">TODOS</mat-option>
+                            <mat-option  value="queja">QUEJA</mat-option>
+                            <mat-option  value="sugerencia">SUGERENCIA</mat-option>
+                        </mat-select>
+                    </div>
+                </mat-form-field>
+            </div>
+        </div>
+        <div>
+            <input  type="text" (keyup)="applyFilter($event)" placeholder="Buscar..."
+            class="form-control">
+        </div>
+        
+    </div>
+</div>
+<!--------------------------------------------------------------------------------------------------->
+<!--------------------------------------TABLA SUGERENCIAS---------------------------------------------->
+<!--------------------------------------------------------------------------------------------------->
+<mat-table class="grdPlatos" [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha: </mat-header-cell>>
+        <mat-cell *matCellDef="let row"> {{row.time | date: "dd/MM/yyyy, HH: mm"}} </mat-cell>>
+    </ng-container>
+
+    <ng-container matColumnDef="uid_mesa">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Mesa </mat-header-cell>>
+        <mat-cell *matCellDef="let row">  
+            <span *ngIf="row.uid_mesa == 'ee7bc94a-4bbb-6fdb-3557-700831252518'"> 
+            Mesa Nº 1
+            </span>
+            <span *ngIf="row.uid_mesa == '0188b2b6-63f4-a68c-3352-231110437105'"> 
+            Mesa Nº 2
+            </span>
+            <span *ngIf="row.uid_mesa == '4d9b48fc-fbde-bd04-3548-851020949988'" > 
+            Mesa Nº 3
+            </span>
+            <span *ngIf="row.uid_mesa == '4d9b48fc-fbde-bd04-3548-851020949988'" > 
+            Mesa Nº 4
+            </span>
+        </mat-cell>
+    </ng-container>
+    
+
+    <ng-container matColumnDef="tipo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </mat-header-cell>>
+        <mat-cell *matCellDef="let row"> {{row.tipo}} </mat-cell>>
+    </ng-container>
+
+    <ng-container matColumnDef="detalle">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Detalle: </mat-header-cell>>
+        <mat-cell *matCellDef="let row"> {{row.detalle}} </mat-cell>>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>>
+        <mat-cell *matCellDef="let row">
+            <button mat-icon-button color="accent" (click)="verReceta(row)">
+                <mat-icon aria-label="Ver">visibility</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="eliminar(row)">
+                <mat-icon aria-label="Eliminar">highlight_off</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>>
+
+</mat-table>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

@@ -1,0 +1,42 @@
+<div class="contenedor">
+    <div class="container">
+        <!-- <div class="carousel"> -->
+        <div class="carousel">
+            <input type="radio" id="carousel-1" name="carousel[]">
+            <input type="radio" id="carousel-2" name="carousel[]">
+            <input type="radio" id="carousel-3" name="carousel[]" checked>
+            <!-- <input type="radio" id="carousel-4" name="carousel[]"> -->
+            <!-- <ul class="carousel__items"> -->
+            <ul class="carousel__items">
+
+                <li class="carousel__item" *ngFor="let image of dataImages">
+                    <div *ngIf="image.plataforma == 'Web'">
+                        <img src={{image.imagen}} alt="slider">
+                    </div>
+                </li>
+
+                <!-- <li class="carousel__item"><img src="../../assets/img/inicioweb-1.png" alt="slider1"></li>
+                <li class="carousel__item"><img src="../../assets/img/inicioweb 2.png" alt="slider2"></li>
+                <li class="carousel__item"><img src="../../assets/img/inicioweb-3.png" alt="slider3"></li> -->
+            </ul>
+            <div class="carousel__prev">
+                <label for="carousel-1"></label>
+                <label for="carousel-2"></label>
+                <label for="carousel-3"></label>
+                <!-- <label for="carousel-4"></label> -->
+            </div>
+            <div class="carousel__next">
+                <label for="carousel-1"></label>
+                <label for="carousel-2"></label>
+                <label for="carousel-3"></label>
+                <!-- <label for="carousel-4"></label> -->
+            </div>
+            <div class="carousel__nav">
+                <label for="carousel-1"></label>
+                <label for="carousel-2"></label>
+                <label for="carousel-3"></label>
+                <!-- <label for="carousel-4"></label> -->
+            </div>
+        </div>
+    </div>
+</div>

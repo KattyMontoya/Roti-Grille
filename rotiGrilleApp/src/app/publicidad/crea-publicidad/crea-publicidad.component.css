@@ -1,0 +1,46 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor > *{
+    width: 100%;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+}
+h6{
+    text-align: left;
+}
+.info{
+    display: flex;
+    justify-content: center;
+}
+.info-general{
+    display: flex;
+    flex-direction: column;
+    /* border-right: thin solid #000000; */
+    margin-right: 25px;
+    padding-right: 10px;
+}
+.info-receta{
+    display: flex;
+    flex-direction: column;
+}
+.botones{
+    display: flex;
+    justify-content: center;
+}
+.botones button{
+    margin: 10px 15px;
+}
+.botones button:last-of-type{
+    margin-right: 0;
+}
+p{
+   display: flex;
+   justify-content: center;
+   margin: 8px 0; 
+}

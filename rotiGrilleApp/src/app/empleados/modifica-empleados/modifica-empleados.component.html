@@ -1,0 +1,71 @@
+<div class="contenedor">
+    <!--------------------------------------------------------------------------------------------------->
+    <!-------------------------------FORMULARIO DE MODIFICACION------------------------------------------>
+    <!--------------------------------------------------------------------------------------------------->
+    <h3 class="titulo">Modificación de Mesero</h3>
+    <div [hidden]="true">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="id" [(ngModel)]="user.id">
+        </mat-form-field>
+    </div>
+    <div class="info">
+        <div class="info-general">
+            <h6>Información General</h6>
+            <mat-form-field class="example-full-width">
+                <input matInput (keydown)="soloLetras($event)" placeholder="Apellido" [(ngModel)]="user.apellido"
+                    required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput (keydown)="soloLetras($event)" placeholder="Nombre" [(ngModel)]="user.nombre" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput (keydown)="soloNumeros($event)" placeholder="Cedula de Identidad"
+                    [(ngModel)]="user.cedula" minlength="10" maxlength="10" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Correo Electronico" [(ngModel)]="user.email" disabled>
+            </mat-form-field>
+        </div>
+        <div class="info-general2">
+            <mat-form-field class="example-full-width">
+                <input matInput (keydown)="soloNumeros($event)" minlength="9" maxlength="10"
+                    placeholder="Telefono / Celular" [(ngModel)]="user.celular" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Dirección" [(ngModel)]="user.direccion" required>
+            </mat-form-field>
+            <img mat-card-image [src]="urlImagen" *ngIf="urlImagen" class="imgEmp">
+            <button mat-stroked-button color="primary" onclick="document.getElementById('inFotoEmp').click();"
+                type="button">
+                <mat-icon>insert_photo</mat-icon>
+                <span>Subir Imagen</span>
+            </button>
+            <input type="file" accept=".png , .jpg"  style="display: none;" id="inFotoEmp"
+                (change)="seleccionar($event)">
+            <p>{{labelFile}}</p>
+
+            <mat-form-field>
+                <mat-select placeholder="Cargo" [(ngModel)]="user.perfil">
+                    <mat-option value="option" disabled>--Seleccione--</mat-option>
+                    <mat-option *ngFor="let perfil of dataPerfiles" [value]='perfil.id' disabled>
+                        {{ perfil.nombre | uppercase }}</mat-option>
+                    <!-- <mat-option value="Mesero">Mesero</mat-option>
+                    <mat-option value="Administrador">Administrador</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <!--------------------------------------------------------------------------------------------------->
+    <!--------------------------------------BOTONES DE ACCION-------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------->
+    <div class="botones">
+        <button mat-raised-button color="primary" (click)="accionModificarEmp()">
+            <mat-icon>done</mat-icon>
+            <span>Guardar</span>
+        </button>
+        <button mat-raised-button color="accent" (click)='cerrar()' type="button">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+    </div>
+</div>

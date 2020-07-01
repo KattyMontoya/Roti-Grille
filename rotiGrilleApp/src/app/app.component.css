@@ -1,0 +1,10 @@
+.fondo{
+    background-color: black; 
+    /* background-image: image("/assets/img/diseño-web-opacidad-0.png"); */
+    background-image: url("/assets/img/diseño.png"); /* The image used */
+    /* background-image: url("/assets/img/diseño-web-opacidad-0.png"); The image used */
+    background-position: center;
+    max-width: 100%;
+    height: 750px;
+    /* max-height: 100%; */
+}

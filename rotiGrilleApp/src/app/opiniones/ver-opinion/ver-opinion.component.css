@@ -1,0 +1,12 @@
+.receta{
+    display: flex;
+    justify-content: space-between;
+}
+label{
+    /* padding-right: 10px; */
+    padding-bottom: 20px;
+}
+
+.boton{
+    align-content: center;
+}

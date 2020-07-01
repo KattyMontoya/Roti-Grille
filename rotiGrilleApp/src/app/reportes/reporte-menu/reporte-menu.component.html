@@ -1,0 +1,134 @@
+<div class="contenedor">
+    <!--------------------------------------------------------------------------------------------------->
+    <!--------------------------------------BARRA DE NAVEGACION------------------------------------------>
+    <!--------------------------------------------------------------------------------------------------->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <!-- <li class="nav-item dropdown breadcrumb-item menu-desplegable">
+                <a class="dropdown-toggle boton-desplegable" routerLink="/homeAdmin" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menú Principal
+                </a>
+                BARRA DE NAVEGACION
+                <div class="dropdown-menu contenido-desplegable" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/empleados">Empleados</a>
+                    <a class="dropdown-item" routerLink="/reportes">Reportes</a>
+                    <a class="dropdown-item" routerLink="/menu">Opciones de Menu</a>
+                    <a class="dropdown-item" routerLink="/opiniones">Opiniones</a>
+                    <a class="dropdown-item" routerLink="/ordenes">Ordenes</a>
+                    <a class="dropdown-item" routerLink="/promociones">Promociones</a>
+                    <a class="dropdown-item" routerLink="/paginfo">Pagina Informativa</a>
+                </div>
+            </li> -->
+            <li class="breadcrumb-item">
+                <a routerLink="/homeAdmin">
+                    Menú Principal
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a routerLink="/reportes">
+                    Reportes
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Menú
+            </li>
+        </ol>
+    </nav>
+    <!--------------------------------------------------------------------------------------------------->
+    <!--------------------------------------FILTRAR Y CREAR---------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------->
+    <h2 class="titulo">Reporte de platos del Menú</h2>
+    <div class="botones">
+        <button mat-raised-button color="primary" (click)="createPdf()">
+            <mat-icon>printer</mat-icon>Exportar
+        </button>
+        <div>
+            <div class="card-filtrar">
+                <mat-form-field>
+                    <div class="filtrar">
+                        <label for="ddlCategoria">Categoría:</label>
+                        <mat-select id="ddlCategoria" (selectionChange)="applyFilter($event.value)"
+                            [(value)]="selected">
+                            <mat-option value="todos">TODOS</mat-option>
+                            <mat-option *ngFor="let cat of dataPerfiles" [value]='cat.id'>{{ cat.nombre | uppercase }}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- <div class="cat">
+            <button mat-raised-button color="primary" (click)="creaCategoria()">
+                <mat-icon>add</mat-icon>Agregar categoría 
+            </button>
+        </div> -->
+        
+    </div>
+</div>
+<!--------------------------------------------------------------------------------------------------->
+<!--------------------------------------TABLA PRODUCTOS---------------------------------------------->
+<!--------------------------------------------------------------------------------------------------->
+<div id="tabMenu">
+    <mat-table  class="grdPlatos" [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre del plato </mat-header-cell>>
+            <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>>
+        </ng-container>
+    
+        <!-- <ng-container matColumnDef="categoria">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Categoría </mat-header-cell>>
+            <mat-cell *matCellDef="let row"> {{row.categoria}} </mat-cell>> 
+        <td mat-cell *matCellDef="let row"> 
+                <span *ngIf="row.categoria == 'pl2IODtma2pnI1cnARqM'">
+                        Ensaladas
+                </span>
+                <span *ngIf="row.categoria == 'KDDTNKNY40mAvyu4UGQk'">
+                    Postres
+                </span>
+                <span *ngIf="row.categoria == 'AHQ0xbTNrpOooaB7BEJD'">
+                    Bebidas
+                </span>
+                <span *ngIf="row.categoria == 'ywzTk7jvnddNJPxWFLuP'">
+                    Menestras
+                </span>
+                <span *ngIf="row.categoria == 'TNetdRO5IU1gmQfjWhMQ'">
+                    Parrilladas
+                </span>
+            </td>
+        </ng-container> -->
+    
+        <!-- <ng-container matColumnDef="detalle">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Detalle: </mat-header-cell>>
+            <mat-cell *matCellDef="let row"> {{row.detalle}} </mat-cell>>
+        </ng-container> -->
+    
+        <!-- Precio Column -->
+        <ng-container matColumnDef="precio">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>>
+            <mat-cell *matCellDef="let row"> {{row.precio}} </mat-cell>>
+        </ng-container>
+    
+        
+        <!-- <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button color="primary" (click)="modificaPlato(row)">
+                    <mat-icon aria-label="Actualizar">assignment</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="verReceta(row)">
+                    <mat-icon aria-label="Ver">visibility</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="eliminar(row)">
+                    <mat-icon aria-label="Eliminar">highlight_off</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container> -->
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>>
+    
+    </mat-table>
+</div>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

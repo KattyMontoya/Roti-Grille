@@ -1,0 +1,15 @@
+.receta{
+    display: flex;
+    justify-content: space-between;
+}
+label{
+    padding-right: 10px;
+    border-right: thin solid #000000;
+}
+
+.imgPlato{
+    width: 200px;
+    /* height: 400px; */
+    margin-bottom: 5px;
+    margin-left: 15px;
+}

@@ -1,0 +1,117 @@
+.contenedor{
+    margin-top: 53px;
+}
+/**Titulo**/
+.titulo{
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 30px 0;
+    padding-top: 10px;
+}
+/**Botones**/
+.botones{
+    display: flex;
+    justify-content: center;
+}
+.botones button{
+    margin: 0 50px 70px 0;
+}
+.botones button:last-of-type{
+    margin-right: 0;
+}
+/**Tabla grid**/
+.grdVentas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 100px;
+}
+
+mat-paginator{
+    margin: 0 100px 40px 100px;
+}
+/**Fechas**/
+.fechas{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    height: 48px;
+    margin-left: 300px;
+    margin-bottom: 5px;
+    background-color: grey;
+}
+.fechas mat-form-field{
+    margin: 0 30px 0px 0;
+}
+
+.fechas input, mat-datepicker, mat-datepicker-toggle{
+    color: #fff;
+    margin-right: 5px;
+}
+.fechas button{
+    margin-bottom: 5px;
+}
+/**menu despegable**/
+.menu-desplegable{
+    position: relative;
+    display: inline-block;
+}
+.boton-desplegable{
+    background-color: #e9ecef;
+    color: #007bff;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+}
+.contenido-desplegable{
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.contenido-desplegable a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;   
+}
+.contenido-desplegable a:hover{
+    background-color: #ddd;
+}
+.menu-desplegable:hover .contenido-desplegable{
+    display: block;
+}
+.boton-desplegable:hover{
+    background-color: #e9ecef;
+}
+.card-filtrar{
+    width: 430px;
+    height: 50px;
+    padding: 2px;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+}
+.filtrar{
+    /* display: flex;
+    justify-content: center; */
+    width: 350px;
+}
+.filtrar input{
+    width: 100px;
+}
+.filtrar mat-datepicker{
+     width: 150%;
+     margin-top: -13px;
+     size: 15px;
+     color: black;
+     /* align-items: flex-end; */
+}
+
+mat-footer-row {
+    font-weight: bold;
+  }

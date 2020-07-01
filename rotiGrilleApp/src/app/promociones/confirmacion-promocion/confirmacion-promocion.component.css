@@ -1,0 +1,20 @@
+.botones{
+    display: flex;
+    justify-content: center;
+    margin: 25px 100px;
+}
+
+.botones input{
+    margin-left: 15px;
+    
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+}

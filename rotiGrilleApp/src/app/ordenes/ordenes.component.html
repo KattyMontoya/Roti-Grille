@@ -1,0 +1,182 @@
+<div class="contenedor">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <!-- <li class="nav-item dropdown breadcrumb-item menu-desplegable">
+                <a class="dropdown-toggle boton-desplegable" routerLink="/homeAdmin" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menú Principal
+                </a>
+                <div class="dropdown-menu contenido-desplegable" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/empleados">Empleados</a>
+                    <a class="dropdown-item" routerLink="/reportes">Reportes</a>
+                    <a class="dropdown-item" routerLink="/menu">Opciones de Menu</a>
+                    <a class="dropdown-item" routerLink="/opiniones">Opiniones</a>
+                    <a class="dropdown-item" routerLink="/ordenes">Ordenes</a>
+                    <a class="dropdown-item" routerLink="/promociones">Promociones</a>
+                    <a class="dropdown-item" routerLink="/paginfo">Pagina Informativa</a>
+                </div>
+            </li> -->
+      <li class="breadcrumb-item" >
+        <div  *ngIf= "this.loginService.emailLogeado() == true ; else isfalse">
+          <a routerLink="/homeAdmin">
+            Menú Principal
+          </a>
+        </div>
+        <ng-template #isfalse>
+          <a routerLink="/homeEmpleado">
+            Menú Principal
+          </a>
+        </ng-template>
+        
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Gestión de órdenes
+      </li>
+    </ol>
+  </nav>
+  <h2 class="titulo">Gestión de Órdenes</h2>
+  <!-- <div class="historial">
+    <a routerLink="/reporteVentas"><button class="btn btn-info">Historial</button></a>
+  </div> -->
+  <div class="estapas-pedido">
+    <!-- ---------------------------------------------------------------------------------------------- -->
+    <!-- ---------------------------------------PEDIDOS ENTRANTES-------------------------------------- -->
+    <!-- ---------------------------------------------------------------------------------------------- -->
+    <fieldset class="entrantes">
+      <legend>Entrantes:</legend>
+      <span *ngFor="let pedido of dataPedidos">
+        <div class="card orden" *ngIf="pedido.tipo == 'pendiente'">
+
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header class="cabecera-acordeon">
+                <mat-panel-title>
+                  <div class="num-pedido">
+                      <span *ngIf="pedido.uid_mesa == 'ee7bc94a-4bbb-6fdb-3557-700831252518'"> 
+                        <h5>Mesa Nº 1</h5>
+                      </span>
+                      <span *ngIf="pedido.uid_mesa == '0188b2b6-63f4-a68c-3352-231110437105'"> 
+                        <h5>Mesa Nº 2</h5>
+                      </span>
+                      <span *ngIf="pedido.uid_mesa == '4d9b48fc-fbde-bd04-3548-851020949988'" > 
+                      <h5>Mesa Nº 3</h5>
+                      </span>
+                      <span *ngIf="pedido.uid_mesa == ''" > 
+                        <h5>Mesa Nº 4</h5>
+                        </span>
+                    <!-- <h5>MESA Nº</h5> -->
+                    <h6>Pedido {{pedido.pedido}}</h6>
+                    <p>{{pedido.fecha | date: "dd/MM/yyyy, HH:mm"}}</p>
+                  </div>
+                </mat-panel-title>
+                <mat-panel-description>
+                  <p class="card-title total">${{pedido.total}} <span style="font-size: 10px;">Incluye IVA</span></p>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <h6 class="card-title"  class="detalle-pedido">Detalle Pedido:</h6>
+              <div *ngFor="let pedido of pedido.productos">
+                <p class="card-text">{{pedido.cantidad}} {{pedido.nombre}}</p>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+          <button mat-raised-button color="primary" mat-button (click)="verPedido(pedido)">Ver Pedido</button>
+        </div>
+      </span>
+    </fieldset>
+
+    <!-- ---------------------------------------------------------------------------------------------- -->
+    <!-- ---------------------------------------PEDIDOS EN PRODUCCION---------------------------------- -->
+    <!-- ---------------------------------------------------------------------------------------------- -->
+
+    <fieldset class="produccion">
+      <legend>En Producción:</legend>
+      <span *ngFor="let pedido of dataPedidos">
+        <div class="card orden" *ngIf="pedido.tipo == 'produccion'">
+
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header class="cabecera-acordeon">
+                <mat-panel-title>
+                  <div class="num-pedido">
+                    <span *ngIf="pedido.uid_mesa == 'ee7bc94a-4bbb-6fdb-3557-700831252518'"> 
+                      <h5>Mesa Nº 1</h5>
+                    </span>
+                    <span *ngIf="pedido.uid_mesa == '0188b2b6-63f4-a68c-3352-231110437105'"> 
+                      <h5>Mesa Nº 2</h5>
+                    </span>
+                    <span *ngIf="pedido.uid_mesa == '4d9b48fc-fbde-bd04-3548-851020949988'" > 
+                      <h5>Mesa Nº 3</h5>
+                      </span>
+                      <span *ngIf="pedido.uid_mesa == ''" > 
+                        <h5>Mesa Nº 4</h5>
+                        </span>
+                    <h6>Pedido {{pedido.pedido}}</h6>
+                    <p>{{pedido.fecha | date: "dd/MM/yyyy, HH:mm"}}</p>
+                  </div>
+                </mat-panel-title>
+                <mat-panel-description>
+                  <p class="card-title total">${{pedido.total}} <span style="font-size: 10px;">Incluye IVA</span></p>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              
+              <h6 class="card-title"  class="detalle-pedido">Detalle Pedido:</h6>
+              <div *ngFor="let pedido of pedido.productos">
+                <p class="card-text">{{pedido.cantidad}} {{pedido.nombre}}</p>
+
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+          <button mat-raised-button color="primary" mat-button (click)="verPedido(pedido)">Ver Pedido</button>
+        </div>
+      </span>
+    </fieldset>
+
+    <!-- ---------------------------------------------------------------------------------------------- -->
+    <!-- ---------------------------------------PEDIDOS FINALIZADOS------------------------------------ -->
+    <!-- ---------------------------------------------------------------------------------------------- -->
+
+    <fieldset class="finalizados">
+      <legend>Finalizados:</legend>
+      <span *ngFor="let pedido of dataPedidos">
+        <div class="card orden" *ngIf="pedido.tipo == 'finalizado'">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header class="cabecera-acordeon">
+                <mat-panel-title>
+                  <div class="num-pedido">
+                    <span *ngIf="pedido.uid_mesa == 'ee7bc94a-4bbb-6fdb-3557-700831252518'"> 
+                      <h5>Mesa Nº 1</h5>
+                    </span>
+                    <span *ngIf="pedido.uid_mesa == '0188b2b6-63f4-a68c-3352-231110437105'"> 
+                      <h5>Mesa Nº 2</h5>
+                    </span>
+                    <span *ngIf="pedido.uid_mesa == '4d9b48fc-fbde-bd04-3548-851020949988'" > 
+                      <h5>Mesa Nº 3</h5>
+                      </span>
+                      <span *ngIf="pedido.uid_mesa == ''" > 
+                        <h5>Mesa Nº 4</h5>
+                        </span>
+                    <h6>Pedido {{pedido.pedido}}</h6>
+                    <p>{{pedido.fecha | date: "dd/MM/yyyy, HH:mm"}}</p>
+                  </div>
+                </mat-panel-title>
+                <mat-panel-description>
+                  <p class="card-title total">${{pedido.total}} <span style="font-size: 10px;">Incluye IVA</span></p>
+                  <p class="card-title estado">{{pedido.estadoPedido}}</p>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p class="card-title" class="detalle-pedido">Detalle Pedido:</p>
+              <div *ngFor="let pedido of pedido.productos">
+                <p class="card-text">{{pedido.cantidad}} {{pedido.nombre}}</p>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <button mat-raised-button color="primary" mat-button (click)="verPedido(pedido)">Ver Pedido</button>
+        </div>
+      </span>
+    </fieldset>
+
+  </div>
+</div>

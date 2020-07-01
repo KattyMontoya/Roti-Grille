@@ -1,0 +1,113 @@
+<div class="contenedor">
+    <!--------------------------------------------------------------------------------------------------->
+    <!--------------------------------------BARRA DE NAVEGACION------------------------------------------>
+    <!--------------------------------------------------------------------------------------------------->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <!-- <li class="nav-item dropdown breadcrumb-item menu-desplegable">
+                <a class="dropdown-toggle boton-desplegable" routerLink="/homeAdmin" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menú Principal
+                </a>
+                <div class="dropdown-menu contenido-desplegable" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/empleados">Empleados</a>
+                    <a class="dropdown-item" routerLink="/reportes">Reportes</a>
+                    <a class="dropdown-item" routerLink="/menu">Opciones de Menu</a>
+                    <a class="dropdown-item" routerLink="/opiniones">Opiniones</a>
+                    <a class="dropdown-item" routerLink="/ordenes">Ordenes</a>
+                    <a class="dropdown-item" routerLink="/promociones">Promociones</a>
+                    <a class="dropdown-item" routerLink="/paginfo">Pagina Informativa</a>
+                </div>
+            </li> -->
+            <li class="breadcrumb-item">
+                <a routerLink="/homeAdmin">
+                    Menú Principal
+                </a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Empleados
+            </li>
+        </ol>
+    </nav>
+    <!--------------------------------------------------------------------------------------------------->
+    <!--------------------------------------FILTRO DE BUSQUEDA------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------->
+    <h2 class="titulo">Gestión de Meseros</h2>
+    <div class="botones">
+        <button mat-raised-button color="primary" (click)="creaEmpleado()">
+            <mat-icon>add</mat-icon>Crear
+        </button>
+
+        <input type="text" (keyup)="applyFilter($event)" placeholder="Buscar..." class="form-control">
+
+    </div>
+</div>
+<!--------------------------------------------------------------------------------------------------->
+<!--------------------------------------TABLA DE EMPLEADOS------------------------------------------->
+<!--------------------------------------------------------------------------------------------------->
+<mat-table class="grdEmpleados" [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="foto">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <!-- <img src="{{row.foto}}" alt="fotoEmpleado"> -->
+            <mat-card>
+                <div mat-card-avatar class="example-header-image">
+                    <img src="{{row.foto}}" alt="">
+                </div>
+            </mat-card>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cedula">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Cedula </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.cedula}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nombresCompletos">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Completo </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.apellido}} {{row.nombre}} </mat-cell>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Correo Electronico </mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
+    </ng-container> -->
+
+    <ng-container matColumnDef="celular">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Contacto </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.celular}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="direccion">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.direccion}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="perfil">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Cargo </mat-header-cell>
+        <td mat-cell *matCellDef="let row">
+            <span *ngIf="row.perfil == 'O84lNoQAdvst0LNzOZM8'  ; else isfalse">
+                Mesero
+            </span>
+            <ng-template #isfalse>
+                Administrador
+            </ng-template>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" (click)="modificarEmp(row)">
+                <mat-icon aria-label="Actualizar">assignment</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="eliminarUsuario(row)" *ngIf="row.perfil == 'O84lNoQAdvst0LNzOZM8'">
+                <mat-icon aria-label="Eliminar">highlight_off</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

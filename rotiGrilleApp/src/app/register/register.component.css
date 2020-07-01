@@ -1,0 +1,24 @@
+.contenedor{
+    margin-top: 100px;
+}
+.form-control.login-user {
+    border: 0px solid #fff !important;
+    padding-bottom: 0%;
+}
+
+.btn-social{
+position: relative;
+text-align: center;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+color: #fff;
+border-color: rgba(0,0,0,0.2);
+}
+
+.btn-facebook{
+background: #3b5998;
+}
+.btn-google{
+background: #dd4b39;
+}

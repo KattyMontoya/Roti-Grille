@@ -1,0 +1,25 @@
+<div class="contenedor">
+    <h6 class="titulo">Ingrese el motivo del rechazo de la orden</h6>
+    <div [hidden]="true">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="id" [(ngModel)]="pedidoNuevo.id">
+        </mat-form-field>
+    </div>
+    <div class="info">
+        <div class="info-general">
+            <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Motivo:" [(ngModel)]="pedidoNuevo.mensaje"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="botones">
+        <button mat-raised-button color="primary" (click)="rechazarOrden()">
+            <mat-icon>done</mat-icon>
+            <span>Enviar</span>
+        </button>
+        <button mat-raised-button color="accent" (click)='cerrarOrden()' type="button">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<form [formGroup]="form" (ngSubmit)="accionModificar()" class="contenedor">
+    <div class="contenedor">
+        <h3 class="titulo">Modificación de Promociones</h3>
+        <div [hidden]="true">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="id" formControlName="id" [(ngModel)]="promocion.id">
+            </mat-form-field>
+        </div>
+        <div class="info">
+            <div class="info-general">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Nombre " formControlName="nombre" [(ngModel)]="promocion.nombre">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Precio" formControlName="precio" [(ngModel)]="promocion.precio"
+                        type="number" maxlength="5" step="0.00" required>
+                    <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
+                <div *ngIf="form.get('precio').errors && form.get('precio').dirty">
+                    <p class="errores" *ngIf="form.get('precio').hasError('required')">Campo obligatorio</p>
+                    <p class="errores" *ngIf="form.get('precio').hasError('min')">El precio debe ser mayor a 0</p>
+                    <p class="errores" *ngIf="form.get('precio').hasError('max')">El precio debe ser menor a 100</p>
+                    <p class="errores" *ngIf="form.get('precio').hasError('pattern')">El precio invalido</p>
+                    <p class="errores" *ngIf="form.get('precio').hasError('maxlength')">Precio invalido</p>
+                </div>
+
+                <img mat-card-image [src]="urlImagen" *ngIf="urlImagen" class="imgPlato">
+                <button mat-stroked-button color="primary" onclick="document.getElementById('inFotoPromocion').click();"
+                    type="button">
+                    <mat-icon>insert_photo</mat-icon>
+                    <span>Subir Imagen</span>
+                </button>
+                <input type="file" accept="image/png, image/jpg" style="display: none;" id="inFotoPromocion"
+                    (change)="seleccionar($event)">
+                <p>{{labelFile}}</p>
+            </div>
+            <div class="info-receta">
+                <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="Detalle" formControlName="detalle"
+                        [(ngModel)]="promocion.detalle"></textarea>
+                </mat-form-field>
+                <!-- <button mat-stroked-button color="primary">
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Añadir Ingrediente</span>
+            </button> -->
+            </div>
+        </div>
+        <div class="botones">
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+                <mat-icon>done</mat-icon>
+                <span>Guardar</span>
+            </button>
+            <button mat-raised-button color="accent" (click)='cerrar()' type="button">
+                <mat-icon>close</mat-icon>
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </div>
+</form>

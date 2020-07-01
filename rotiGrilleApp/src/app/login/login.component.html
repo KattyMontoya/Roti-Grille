@@ -1,0 +1,88 @@
+<div class="contenedor">
+  <div class="row">
+    <div class="text-center" style="width: 100%;margin: 20px; color: #ffffff;">
+      <!-- <h2>Inicio de Sesion</h2> -->
+    </div>
+    <div class="" style="width: 500px; margin: auto">
+
+      <div class="card">
+        <!-- When Uses is Not Logged In -->
+        <div class="card-body" *ngIf="!userDetails">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <div class="btn-group">
+                <h3><strong>Inicio de sesión</strong></h3>
+                <!-- <button type="button" class="btn" [ngClass]="{'btn-primary
+                      active': selectedVal == 'register' }"
+                  (click)="onValChange('register')"><strong>Registrarse</strong></button> -->
+              </div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="emailInput" id="email" placeholder="Email">
+          </div>
+          <div class="form-group" *ngIf="!isForgotPassword">
+            <label for="password">Contraseña</label>
+            <input type="password" class="form-control" [(ngModel)]="passwordInput" id="password"
+              placeholder="Password">
+          </div>
+          <div class="form-group" *ngIf="!isForgotPassword">
+
+            <span *ngIf="selectedVal == 'login'; else elseBlock">
+              <!--<a routerLink="/homeAdmin">-->
+              <button type="button" class="btn btn-primary" (click)="loginUser()">Iniciar Sesión</button>
+              <!--</a>-->
+            </span>
+            <!-- <ng-template #elseBlock>
+              <button type="button" class="btn btn-primary" (click)="registerUser()">Registrarse</button>
+            </ng-template> -->
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <a href="javascript:void(0)" (click)="this.isForgotPassword= true;">¿Olvidaste tu contraseña?</a>
+
+          </div>
+          <div class="form-group" *ngIf="isForgotPassword">
+
+            <button type="button" class="btn" (click)="this.isForgotPassword=false;">Cancelar</button>
+            <button type="button" class="btn btn-primary" (click)="forgotPassword()">Restablecer la contraseña</button>
+          </div>
+          <!-- <div class="form-group text-center">
+            <img src="../assets/images/googlebtn.png" alt="" srcset="" (click)="googleLogin()" style="cursor: pointer;">
+          </div> -->
+
+        </div>
+
+        <!-- When Uses is Logged In using Email or Google Account -->
+        <!-- <div class="card-body" *ngIf="userDetails">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="list-group">
+                <li class="list-group-item">Usuario:
+                  {{userDetails['displayName']}}</li>
+                <li class="list-group-item">Email: {{userDetails['email']}}</li>
+                <li class="list-group-item">Is Email Varified:
+                  {{userDetails['emailVerified']}}</li>
+                <li class="list-group-item">
+                  <button type="button" class="btn btn-info" (click)="logoutUser()">
+                    <a rouerLink="/homeAdmin">Entrar</a>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        <!-- <div *ngIf="userDetails">
+          <a routerLink="/homeAdmin" > Entrar </a>
+        </div> -->
+
+      </div>
+      <div class="alert alert-{{responseMessageType}}" role="alert" *ngIf="responseMessage.length">
+        {{responseMessage}}
+      </div>
+    </div>
+  </div>
+</div>
