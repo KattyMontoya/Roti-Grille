@@ -111,7 +111,7 @@ export class ReporteEmpleadosComponent implements OnInit {
     });
     const pdfEmpleados = new jspdf("portrait", "px", "a4") as jsPDFWithPlugin;
     pdfEmpleados.addImage(data, 'PNG', 10, 10, 30, 30)  
-    pdfEmpleados.text("Reporte de empleados - Roti Grillé", 50, 30);
+    pdfEmpleados.text("Reporte de empleados - Rôti Grillé", 50, 30);
     pdfEmpleados.autoTable({
       margin: {top: 60},
       head: [['Cedula', 'Nombre', 'Apellido', 'Email', 'Contacto', 'Dirección', 'Cargo']],

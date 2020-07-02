@@ -113,7 +113,7 @@ export class ReporteMenuComponent implements OnInit, OnDestroy {
     var id = document.getElementById('tabMenu');
     const doc = new jspdf('portrait', 'px', 'a4') as jsPDFWithPlugin;
     doc.addImage(data, 'PNG', 10, 10, 30, 30)  
-    doc.text("Reporte del menú - Roti Grillé", 50, 30);
+    doc.text("Reporte del menú - Rôti Grillé", 50, 30);
     doc.autoTable({
       margin: {top: 60},
       head: [['Nombre', 'Precio']],

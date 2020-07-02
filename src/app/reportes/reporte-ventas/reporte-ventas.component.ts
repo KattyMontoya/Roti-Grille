@@ -196,7 +196,7 @@ export class ReporteVentasComponent implements OnInit {
     });
     const pdfVentas = new jspdf("portrait","px","a4") as jsPDFWithPlugin;
     pdfVentas.addImage(data, 'PNG', 10, 10, 30, 30)  
-    pdfVentas.text("Reporte de ventas - Roti Grillé", 50, 30);
+    pdfVentas.text("Reporte de ventas - Rôti Grillé", 50, 30);
     pdfVentas.autoTable({
       margin: {top: 60},
       head: [['# Mesa', '# Pedido', 'Fecha', 'Estado', 'Total']],
